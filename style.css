@@ -52,7 +52,6 @@ top: 90px;
 .line-photo{transform: scale(1.05);
     transition: 0.5s ease-in;}
 .port{
-    height: 700px;
     background: linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(./images/fgg-min.jpeg) center/cover,
     no-repeat, fixed;
 }
