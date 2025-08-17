@@ -177,55 +177,51 @@
         </button>
       </div>
     </section>
-    <!--gallery section-->
-    <section>
-      <div class="container">
-        <div class="lightbox gallery">
-          <div class="gallery-inner">
-            <div class="row g-0">
-              <div class="col-md-3 gallery-item">
-                <div class="swiper-slide">
-                  <img
-                    class="w-100"
-                    src="./images/professional-middle-aged-bearded-trucker-standing-by-his-semi-truck-holding-thumbs-up_342744-1318.jpeg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 gallery-item">
-                <div class="swiper-slide">
-                  <img
-                    class="w-100"
-                    src="./images/truck-vehicle-with-trailers-background_342744-1297.jpeg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 gallery-item">
-                <div class="swiper-slide">
-                  <img
-                    class="w-100"
-                    src="./images/agricultural-silo_146671-19117.jpeg"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div class="col-md-3 gallery-item">
-                <div class="swiper-slide">
-                  <img
-                    class="w-100"
-                    src="./images/two-colleagues-factory_1303-14331.jpeg"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+ <!--gallery section-->
+    <section class="container py-5">
+      <h2 class="text-center mb-4">Gallery with Swiper in Lightbox</h2>
+      <div class="row g-3 gallery">
+        <div class="col-6 col-md-3">
+          <a href="#gallery-swiper" class="glightbox">
+            <img src="images/professional-middle-aged-bearded-trucker-standing-by-his-semi-truck-holding-thumbs-up_342744-1318.jpeg" class="img-fluid" alt="Photo 1">
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="#gallery-swiper" class="glightbox">
+            <img src="images/truck-vehicle-with-trailers-background_342744-1297.jpeg" class="img-fluid" alt="Photo 2">
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="#gallery-swiper" class="glightbox">
+            <img src="images/agricultural-silo_146671-19117.jpeg" class="img-fluid" alt="Photo 3">
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="#gallery-swiper" class="glightbox">
+            <img src="images/two-colleagues-factory_1303-14331.jpeg" class="img-fluid" alt="Photo 4">
+          </a>
         </div>
       </div>
     </section>
+  
+    <!-- HIDDEN SWIPER (this will open in lightbox) -->
+    <div id="gallery-swiper" class="glightbox-desc" style="display:none;">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="images/professional-middle-aged-bearded-trucker-standing-by-his-semi-truck-holding-thumbs-up_342744-1318.jpeg" alt="Photo 1"></div>
+          <div class="swiper-slide"><img src="images/truck-vehicle-with-trailers-background_342744-1297.jpeg" alt="Photo 2"></div>
+          <div class="swiper-slide"><img src="images/agricultural-silo_146671-19117.jpeg" alt="Photo 3"></div>
+          <div class="swiper-slide"><img src="images/two-colleagues-factory_1303-14331.jpeg" alt="Photo 4"></div>
+        </div>
+        <!-- Add Swiper navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
 
-    <!--gallery end-->
+    <!--gallery end-->    
     <!--transport intro section-->
     <section>
       <div class="container">
@@ -517,14 +513,49 @@
         </div>
       </div>
     </section>
-  
 
- 
-  
+
+
+
+      <script src="./swiper/swiper-bundle.min.js"></script>
+    <script src="./glightbox/js/glightbox.min.js"></script>
+ <script>
+  // Init GLightbox
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    openEffect: 'fade',
+    closeEffect: 'fade'
+  });
+
+  let swiperInitialized = false; // ensure Swiper only initializes once
+
+  lightbox.on('open', () => {
+    setTimeout(() => {
+      if (!swiperInitialized) {
+        new Swiper('.swiper', {
+          loop: false,       // disable loop for small galleries
+          slidesPerView: 1,
+          spaceBetween: 20,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }
+        });
+        swiperInitialized = true;
+      }
+    }, 200); // slightly longer delay ensures DOM is visible
+  });
+</script>  
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="./swiper/swiper-bundle.min.js"></script>
-    <script src="./glightbox/js/glightbox.min.js"></script>
   </body>
 </html>
